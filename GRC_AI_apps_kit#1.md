@@ -7,6 +7,7 @@
   - incorrect
   - unlocked
   - locked
+- After entering the correct voice PIN, a high signal is sent to pin `GPIO_NUM_14` on ESP32S3 part which is connected to `GPIO_NUM_2` on ESP32C3 part.
 
 ## Robot Control
 - Name: RobotControl
