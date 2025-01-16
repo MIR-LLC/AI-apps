@@ -1,6 +1,7 @@
 # GRC tinyML DevBoard Specification
 
-![ovwerview](https://github.com/user-attachments/assets/065d38e4-7b0b-4457-a368-dec6655780fb)
+![DevBDesc](https://github.com/user-attachments/assets/3b128e4f-5e14-4521-b714-03a67c541ea3)
+
 
 ### Master module	ESP32-S3
 Tensilica Xtensa 32-bit LX7 microprocessor
@@ -120,4 +121,3 @@ LiPo 1S - 3.7V
 ### Power consumption (average)
 30mA
 
-![size](https://github.com/user-attachments/assets/ba5c36d3-9bb6-45ec-8b88-b64ec50ae20f)
