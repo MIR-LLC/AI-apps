@@ -4,8 +4,8 @@ Ready-to-use software for quickly starting the development of Edge AI applicatio
 
 This kit includes preinstalled applications that can be used for your scenarios:
 
-- **Voice PIN**
 - **Robot Control**
+- **Voice PIN**
 - **Teacher 3+**
   
 <img src="https://github.com/user-attachments/assets/20e785a2-c038-4ea8-bf42-8d3d5cd57d95" width=30%>
