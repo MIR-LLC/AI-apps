@@ -1,10 +1,10 @@
 # GRC-AI-apps
 
-[GRC_AI_apps_kit#1.md](https://github.com/Grovety/GRC-AI-apps/blob/main/GRC_AI_apps_kit%231.md)
-[Description](https://github.com/Grovety/GRC-AI-apps/blob/main/docs/Set%231.md)
+[Description of GRC_AI APP#1](https://github.com/Grovety/GRC-AI-apps/blob/main/docs/GRC_AI_App%231.md)
 
-[GRC_AI_apps_kit#2.md](https://github.com/Grovety/GRC-AI-apps/blob/main/GRC_AI_apps_kit%232.md)
-[Description](https://github.com/Grovety/GRC-AI-apps/blob/main/docs/Set%232.md)
+[Description of GRC_AI APP#2](https://github.com/Grovety/GRC-AI-apps/blob/main/docs/GRC_AI_App%232.md)
+
+
 
 # An example application demonstrating communication between ESP32S3 and ESP32C3
 
