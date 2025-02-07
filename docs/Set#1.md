@@ -12,10 +12,10 @@ This kit includes preinstalled applications that can be used for your scenarios:
 
 ---
 
-## Applications
+## Preinstalled Applications
 
 ### Robot Control
-Voice command recognition for Arduino and other robot control.
+Voice command recognition and tilt control for Arduino robots and other devices. 
 
 ### Voice PIN-Code
 Springs into action when a user inputs a pre-set voice PIN code (four digits) that the user says.
@@ -25,7 +25,9 @@ Full version of an app for English word learning for kids 3+.
 
 ---
 
-You can utilize these pre-installed apps in your own scenarios by using the open-source component that runs on the ESP32-C3. Feel free to modify it to meet your specific needs, equipment, and tasks.
+**You can utilize these pre-installed applications alongside an open-source component running on the ESP32-C3.**
+
+While the applications themselves are not open-source, this component provides access to their output data and enables you to control and manage them, send commands, and supply data for processing, allowing integration and customization for your specific tasks, equipment, and scenarios. 
 
 **[Open-source software component on GitHub](https://github.com/Grovety/GRC-AI-apps/blob/main/GRC_AI_apps_kit%231.md)**
 
@@ -42,12 +44,20 @@ You can utilize these pre-installed apps in your own scenarios by using the open
 ## Applications Overview
 
 ### Robot Control
-The application operates in constant mode, listening for user commands through the built-in microphone. When it detects a command from its predefined list, the application recognizes it, announces it through the speaker on the development board, and transmits it via Bluetooth and wired connections.
+An app for controlling devices, such as robots, using voice commands and gestures like tilting a board in different directions. Both modes can be used simultaneously or separately. 
 
-The command that is sent can be transformed into movement commands by the robot or other devices. Additionally, you can process the command using the ESP32-C3 microcontroller on the board, allowing you to convert it directly into commands for controlling the motors without the need for extra computing boards.
 
-#### Commands List:
-- Robot, sleep, start, stop, right, left, forward, backward, home, slow, fast.
+**Voice Control**
+
+Commands List: robot, sleep, start, stop, right, left, forward, backward, home, slow, fast, light, music. 
+
+The application operates in constant mode, listening for user commands through the built-in microphones. When it detects a command from its predefined list, the application recognizes it, announces it through the speaker on the development board, and transmits it via BLE and wired connections. 
+
+The command that is sent can be transformed into movement commands by the robot or other devices. Additionally, you can process the command using the onboard ESP32-C3 microcontroller, allowing you to convert it directly into commands for controlling the motors without the need for extra computing boards. 
+
+**Tilt Control**
+
+The app detects the tilt of a board and translates it into commands to control a robot. Tilting forward makes the robot accelerate, while tilting backward slows it down or moves it in reverse. Tilting to the sides makes it turn. The controls are intuitive and engaging, offering a fun user experience. This system can be adapted to control different types of machines.  
 
 #### Interfaces:
 You can use UART and other interfaces to interact with the app. [Learn more](https://github.com/Grovety/GRC-AI-apps/blob/main/GRC_AI_apps_kit%231.md).
