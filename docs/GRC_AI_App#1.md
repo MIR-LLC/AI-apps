@@ -4,9 +4,9 @@ Ready-to-use software for quickly starting the development of Edge AI applicatio
 
 This kit includes preinstalled applications that can be used for your scenarios:
 
-- **Robot Control**
-- **Voice PIN**
-- **Teacher 3+**
+- Robot Control
+- Voice PIN
+- Teacher 3+
   
 <img src="https://github.com/user-attachments/assets/20e785a2-c038-4ea8-bf42-8d3d5cd57d95" width=30%>
 
@@ -35,9 +35,9 @@ While the applications themselves are not open-source, this component provides a
 
 ## Where Can It Be Used?
 
-- **tinyML devices development**
-- **DIY electronics**
-- **AI/ML technologies studying**
+- tinyML devices development
+- DIY electronics
+- AI/ML technologies studying
 
 ---
 
