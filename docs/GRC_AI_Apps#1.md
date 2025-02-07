@@ -1,4 +1,4 @@
-# GRC AI Apps Kit #1
+# GRC AI Apps#1
 
 Ready-to-use software for quickly starting the development of Edge AI applications based on the GRC Development Board. 
 
