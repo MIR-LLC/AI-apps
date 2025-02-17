@@ -1,5 +1,6 @@
 build
 .vscode
+.cache
 sdkconfig
 sdkconfig.old
 dependencies.lock

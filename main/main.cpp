@@ -20,6 +20,7 @@
 #include "ble_server.h"
 #include "grc_cmd.h"
 #include "protocol.h"
+#include "status.h"
 #include "uart.h"
 
 #define PROMPT_STR    CONFIG_IDF_TARGET
@@ -30,9 +31,10 @@
 
 #define GRC_FLAGS_MONITOR_MODE_MSK BIT0
 static EventGroupHandle_t xGRCFlags;
-static TaskHandle_t xTaskHandle = NULL;
+static TaskHandle_t bt_tx_task_handle = NULL;
+static TaskHandle_t bt_state_task_handle = NULL;
 
-static int select_monitor_cmd(int argc, char **argv) {
+static int monitor_cmd(int argc, char **argv) {
   printf("Enable UART rx monitor\n");
   xEventGroupSetBits(xGRCFlags, GRC_FLAGS_MONITOR_MODE_MSK);
   return 0;
@@ -43,7 +45,7 @@ static void register_monitor_cmd(void) {
     .command = "monitor",
     .help = "Enable UART rx monitor",
     .hint = NULL,
-    .func = &select_monitor_cmd,
+    .func = &monitor_cmd,
     .argtable = NULL,
   };
   ESP_ERROR_CHECK(esp_console_cmd_register(&cmd));
@@ -105,39 +107,74 @@ static void bt_tx_task(void *pv) {
   char rx_buf[IO_RX_BUF_LEN + 1] = {0};
 
   for (;;) {
-    for (;;) {
-      memset(rx_buf, 0, sizeof(rx_buf));
-      int read = uart_read(rx_buf, IO_RECV_HEADER_LEN, portMAX_DELAY);
-      if (read > 0) {
-        const char *found = strstr(rx_buf, IO_RECV_HEADER);
-        if (found == rx_buf) {
-          uint8_t msg_len = 0;
-          read = uart_read(&msg_len, 1, pdMS_TO_TICKS(1000));
-          if (read && msg_len) {
-            read = uart_read(rx_buf, msg_len, pdMS_TO_TICKS(1000));
-            if (read) {
-              rx_buf[read] = '\0';
-              if (xEventGroupGetBits(xGRCFlags) & GRC_FLAGS_MONITOR_MODE_MSK) {
-                printf("UART rx: bytes=%d, %s\n", read, rx_buf);
+    memset(rx_buf, 0, sizeof(rx_buf));
+    int read = uart_read(rx_buf, IO_RECV_HEADER_LEN, portMAX_DELAY);
+    if (read > 0) {
+      const char *found = strstr(rx_buf, IO_RECV_HEADER);
+      if (found == rx_buf) {
+        uint8_t msg_len = 0;
+        read = uart_read(&msg_len, 1, pdMS_TO_TICKS(1000));
+        if (read && msg_len) {
+          read = uart_read(rx_buf, msg_len, pdMS_TO_TICKS(1000));
+          if (read) {
+            rx_buf[read] = '\0';
+            if (xEventGroupGetBits(xGRCFlags) & GRC_FLAGS_MONITOR_MODE_MSK) {
+              printf("UART rx: bytes=%u: ", read);
+              for (size_t i = 0; i < read; i++) {
+                printf("%c", rx_buf[i]);
               }
-              // skip Demo app name
-              size_t idx = 0;
-              while (idx < read) {
-                if (rx_buf[idx] == '_') {
-                  idx++;
-                  break;
-                }
+              printf("\n");
+            }
+            // skip Demo app name
+            size_t idx = 0;
+            while (idx < read) {
+              if (rx_buf[idx] == '_') {
                 idx++;
+                break;
               }
-              // send only actual message
-              if (idx < read) {
-                ble_msg_send(&rx_buf[idx], read - idx, pdMS_TO_TICKS(10000));
-              }
+              idx++;
+            }
+            // send only actual message
+            if (idx < read) {
+              ble_msg_send(&rx_buf[idx], read - idx, pdMS_TO_TICKS(0));
             }
           }
         }
       }
     }
+  }
+}
+
+static int uart_msg_send(const char *msg, size_t len) {
+  if (uart_send((void *)IO_SEND_HEADER, IO_SEND_HEADER_LEN,
+                pdMS_TO_TICKS(1000)) < 0) {
+    printf("UART send timeout\n");
+    return -1;
+  }
+
+  if (uart_send((void *)msg, len, pdMS_TO_TICKS(1000)) < 0) {
+    printf("UART send timeout\n");
+    return -1;
+  }
+  return 0;
+}
+
+static void bt_state_task(void *pv) {
+  bool ble_connected = false;
+  char tx_msg[] = {5, 'B', 'L', 'E', '_', 0};
+
+  for (;;) {
+    const auto xBits = xEventGroupGetBits(xStatusEventGroup);
+    if (!ble_connected && (xBits & STATUS_STATE_BLE_CONNECTED_MSK)) {
+      tx_msg[sizeof(tx_msg) - 1] = 1;
+      uart_msg_send(tx_msg, sizeof(tx_msg));
+      ble_connected = true;
+    } else if (ble_connected && !(xBits & STATUS_STATE_BLE_CONNECTED_MSK)) {
+      tx_msg[sizeof(tx_msg) - 1] = 0;
+      uart_msg_send(tx_msg, sizeof(tx_msg));
+      ble_connected = false;
+    }
+    vTaskDelay(pdMS_TO_TICKS(500));
   }
 }
 
@@ -163,9 +200,16 @@ extern "C" void app_main(void) {
 
   auto xReturned =
     xTaskCreate(bt_tx_task, "bt_tx_task", configMINIMAL_STACK_SIZE + 1024, NULL,
-                1, &xTaskHandle);
+                1, &bt_tx_task_handle);
   if (xReturned != pdPASS) {
     printf("Unable to create bt_tx_task\n");
+  }
+
+  xReturned =
+    xTaskCreate(bt_state_task, "bt_state_task", configMINIMAL_STACK_SIZE + 1024,
+                NULL, tskIDLE_PRIORITY, &bt_state_task_handle);
+  if (xReturned != pdPASS) {
+    printf("Unable to create bt_state_task\n");
   }
 
   initialize_console();

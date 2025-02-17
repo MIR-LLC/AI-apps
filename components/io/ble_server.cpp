@@ -1,4 +1,6 @@
 #include "ble_server.h"
+#include "portmacro.h"
+#include "status.h"
 
 #include "NimBLEDevice.h"
 
@@ -10,6 +12,7 @@
 
 static const char *TAG = "ble_server";
 
+EventGroupHandle_t xStatusEventGroup;
 static MessageBufferHandle_t xMessageBuffer = NULL;
 
 #define MAX_SEND_BYTES  20
@@ -17,8 +20,6 @@ static MessageBufferHandle_t xMessageBuffer = NULL;
 
 BLEServer *pServer = NULL;
 BLECharacteristic *pCharacteristic = NULL;
-bool deviceConnected = false;
-bool oldDeviceConnected = false;
 
 #define DEVICE_NAME         "GRC-esp32c3"
 #define SERVICE_UUID        "FFE0"
@@ -26,11 +27,15 @@ bool oldDeviceConnected = false;
 
 class ServerCallbacks : public BLEServerCallbacks {
   void onConnect(BLEServer *pServer, BLEConnInfo &connInfo) {
-    deviceConnected = true;
+    ESP_LOGI(TAG, "Connected, Client address: %s",
+             connInfo.getAddress().toString().c_str());
+    xEventGroupSetBits(xStatusEventGroup, STATUS_STATE_BLE_CONNECTED_MSK);
   };
 
   void onDisconnect(BLEServer *pServer, BLEConnInfo &connInfo, int reason) {
-    deviceConnected = false;
+    ESP_LOGI(TAG, "Disconnected, reason: %d", reason);
+    xEventGroupClearBits(xStatusEventGroup, STATUS_STATE_BLE_CONNECTED_MSK);
+    NimBLEDevice::startAdvertising();
   }
 };
 
@@ -62,8 +67,11 @@ class CharacteristicCallbacks : public NimBLECharacteristicCallbacks {
 
 void connectedTask(void *pv) {
   for (;;) {
+    auto xBits =
+      xEventGroupWaitBits(xStatusEventGroup, STATUS_STATE_BLE_CONNECTED_MSK,
+                          pdFALSE, pdFALSE, portMAX_DELAY);
     // connected
-    if (deviceConnected) {
+    if (xBits & STATUS_STATE_BLE_CONNECTED_MSK) {
       uint8_t buffer[MAX_SEND_BYTES] = {0};
       auto xBytes = xMessageBufferReceive(xMessageBuffer, buffer,
                                           MAX_SEND_BYTES, pdMS_TO_TICKS(5000));
@@ -73,27 +81,17 @@ void connectedTask(void *pv) {
         pCharacteristic->notify();
       }
     }
-    // disconnecting
-    if (!deviceConnected && oldDeviceConnected) {
-      vTaskDelay(pdMS_TO_TICKS(
-        500)); // give the bluetooth stack the chance to get things ready
-      pServer->startAdvertising(); // restart advertising
-      ESP_LOGD(TAG, "start advertising");
-      oldDeviceConnected = deviceConnected;
-    }
-    // connecting
-    if (deviceConnected && !oldDeviceConnected) {
-      // do stuff here on connecting
-      oldDeviceConnected = deviceConnected;
-    }
-
-    vTaskDelay(
-      pdMS_TO_TICKS(100)); // Delay between loops to reset watchdog timer
   }
   vTaskDelete(NULL);
 }
 
 int ble_server_init() {
+  xStatusEventGroup = xEventGroupCreate();
+  if (xStatusEventGroup == NULL) {
+    ESP_LOGE(TAG, "Error creating xStatusEventGroup");
+    return -1;
+  }
+
   xMessageBuffer = xMessageBufferCreate(MSG_BUFFER_SIZE);
   if (xMessageBuffer == NULL) {
     ESP_LOGE(TAG, "Error creating msg buffer");
@@ -102,6 +100,9 @@ int ble_server_init() {
 
   // Create the BLE Device
   BLEDevice::init(DEVICE_NAME);
+  NimBLEAddress deviceAddress = BLEDevice::getAddress();
+  ESP_LOGI(TAG, "deviceAddress=%s, type=%d", deviceAddress.toString().c_str(),
+           deviceAddress.getType());
 
   // Create the BLE Server
   pServer = BLEDevice::createServer();
@@ -112,7 +113,8 @@ int ble_server_init() {
 
   // Create a BLE Characteristic
   pCharacteristic = pService->createCharacteristic(
-    CHARACTERISTIC_UUID, NIMBLE_PROPERTY::READ | NIMBLE_PROPERTY::NOTIFY);
+    CHARACTERISTIC_UUID,
+    NIMBLE_PROPERTY::READ | NIMBLE_PROPERTY::WRITE | NIMBLE_PROPERTY::NOTIFY);
 
   static CharacteristicCallbacks chrCallbacks;
   pCharacteristic->setCallbacks(&chrCallbacks);
@@ -122,7 +124,7 @@ int ble_server_init() {
   // Start advertising
   BLEAdvertising *pAdvertising = BLEDevice::getAdvertising();
   pAdvertising->addServiceUUID(SERVICE_UUID);
-  pAdvertising->setScanResponse(false);
+  pAdvertising->setName(DEVICE_NAME);
 
   auto xReturned =
     xTaskCreate(connectedTask, "connectedTask", 2048, NULL, 1, NULL);
@@ -131,14 +133,16 @@ int ble_server_init() {
     return -1;
   }
 
-  BLEDevice::startAdvertising();
+  pAdvertising->enableScanResponse(true);
+  pAdvertising->start();
+
   ESP_LOGD(TAG, "Waiting a client connection to notify...");
   return 0;
 }
 
 void ble_server_release() {}
 
-int ble_msg_send(char *buffer, size_t len, size_t timeout) {
+int ble_msg_send(const char *buffer, size_t len, size_t timeout) {
   auto xBytes = xMessageBufferSend(xMessageBuffer, buffer, len, timeout);
   ESP_LOGD(TAG, "bytes sent=%u", xBytes);
   return xBytes;
