@@ -150,8 +150,8 @@ Check the full specification at the link: **[GRC tinyML DevBoard Specification](
 
 ## Links:
 
-- Open-source component on GitHub
-- Robot Control
+- [Open-source component on GitHub](https://github.com/Grovety/GRC-AI-apps/tree/main)
+- [Robot Control](https://github.com/Grovety/GRC-AI-apps/blob/main/docs/Robot_Control_Description.md)
 - Bolt descr
 - [GRC tinyML DevBoard Specification](https://github.com/Grovety/GRC-AI-apps/blob/main/docs/DevBoard_Specification.md)
 
