@@ -144,7 +144,7 @@ You can use UART and other interfaces to interact with the app. [Learn more](htt
 ### Power Consumption (Average):
 - 30mA
 
-Check the full specification at the link: **[GRC tinyML DevBoard Specification](https://github.com/Grovety/GRC-AI-apps/blob/main/DevBoard_Specification.md)**
+Check the full specification at the link: **[GRC tinyML DevBoard Specification](https://github.com/Grovety/GRC-AI-apps/docs/DevBoard_Specification.md)**
 
 ---
 
@@ -153,5 +153,5 @@ Check the full specification at the link: **[GRC tinyML DevBoard Specification](
 - Open-source component on GitHub
 - Robot Control
 - Bolt descr
-- [GRC tinyML DevBoard Specification](https://github.com/Grovety/GRC-AI-apps/blob/main/DevBoard_Specification.md)
+- [GRC tinyML DevBoard Specification](https://github.com/Grovety/GRC-AI-apps/docs/DevBoard_Specification.md)
 
