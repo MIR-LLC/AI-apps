@@ -151,7 +151,7 @@ Check the full specification at the link: **[GRC tinyML DevBoard Specification](
 ## Links:
 
 - [Open-source component on GitHub](https://github.com/Grovety/GRC-AI-apps/tree/main)
-- [Robot Control escription](https://github.com/Grovety/GRC-AI-apps/blob/main/docs/Robot_Control_Description.md)
+- [Robot Control description](https://github.com/Grovety/GRC-AI-apps/blob/main/docs/Robot_Control_Description.md)
 - [Example of Robot Control Implementation Using the CrowBot-BOLT Robot](https://github.com/Grovety/CrowBot_GRC_program/tree/main)
 - [GRC tinyML DevBoard Specification](https://github.com/Grovety/GRC-AI-apps/blob/main/docs/DevBoard_Specification.md)
 
