@@ -43,7 +43,7 @@ While the applications are not open-source, this component provides access to th
 ### Robot Control
 An app for controlling devices, such as robots, using voice commands and gestures like tilting a board in different directions. Both modes can be used simultaneously or separately.
 
-> Check out our open-source firmware for the CrowBot-BOLT robot, which is ready to use right out of the box!  
+> Check out our Arduino open-source program for the [CrowBot-BOLT robot](https://www.elecrow.com/crowbot-bolt-programmable-smart-robot-car-steam-robot-kit.html), which is ready to use right out of the box!  
 link We designed it to showcase voice control and tilt-based movement. You can also use it as a reference for your projects, adapt it for other robots and devices, or explore new possibilities with the CrowBot. 
 
 
