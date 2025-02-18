@@ -46,5 +46,7 @@ idf.py -p PORT build flash monitor
 
 (Replace PORT with the name of the serial port to use)
 ___________
+
 Also, you can use binaries from https://github.com/Grovety/GRC-AI-apps/tree/main/firmware
+
 Use https://github.com/Grovety/GRC-AI-apps/blob/main/firmware/flash_tool.zip to flash the board.
