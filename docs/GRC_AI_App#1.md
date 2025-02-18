@@ -1,11 +1,13 @@
-# GRC AI Apps#1
+# GRC AI DevBoard + Apps#1 
 
 
 <img src="https://github.com/user-attachments/assets/e3e6825e-b6aa-4fa9-a20d-46c42cd3a039" width=40% align="left"> GRC Development Board and ready-to-use software applications to help you quickly make AI-based solutions.
 
 This kit includes preinstalled apps that can be used for scenarios:
 - Voice and tilt Robot Control
+  Ready to use with [CrowBot](https://www.elecrow.com/crowbot-bolt-programmable-smart-robot-car-steam-robot-kit.html)!
 - Voice PIN
+  We recommend using it with: [Crowtail Relay](https://www.elecrow.com/crowtail-relay-p-1232.html) + [Electromagnetic Lock](https://www.elecrow.com/electromagnetic-lock-p-1609.html)
 - Teacher 3+
 
 
@@ -51,6 +53,8 @@ link We designed it to showcase voice control and tilt-based movement. You can a
 
 The application operates in constant mode, listening for user commands through the built-in microphones. When it detects a command from its predefined list, the application recognizes it, announces it through the speaker on the development board, and transmits it via BLE and wired connections.
 The command that is sent can be transformed into movement commands by the robot or other devices. Additionally, you can process the command using the onboard ESP32-C3 microcontroller, allowing you to convert it directly into commands for controlling the motors without the need for extra computing boards.
+
+>Create a smart lock activated by voice PIN using the GRC AI DevBoard with App#1[Crowtail Relay](https://www.elecrow.com/crowtail-relay-p-1232.html) + [Electromagnetic Lock](https://www.elecrow.com/electromagnetic-lock-p-1609.html)
 
 **Tilt Control**
 
