@@ -2,8 +2,7 @@
 
 The application is designed to control various devices, such as robots.  
 
-> Check out our [Arduino open-source program](https://github.com/Grovety/CrowBot_GRC_program/tree/main) for the [CrowBot-BOLT robot](https://www.elecrow.com/crowbot-bolt-programmable-smart-robot-car-steam-robot-kit.html), which is ready to use right out of the box!  
-link We designed it to showcase voice control and tilt-based movement. You can also use it as a reference for your projects, adapt it for other robots and devices, or explore new possibilities with the CrowBot.
+> Check out our [Arduino open-source program](https://github.com/Grovety/CrowBot_GRC_program/tree/main) for the [CrowBot-BOLT robot](https://www.elecrow.com/crowbot-bolt-programmable-smart-robot-car-steam-robot-kit.html), which is ready to use right out of the box! We designed it to showcase voice control and tilt-based movement. You can also use it as a reference for your projects, adapt it for other robots and devices, or explore new possibilities with the CrowBot.
 
 ## What is Robot Control 
 
