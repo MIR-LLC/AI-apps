@@ -3,18 +3,21 @@
 ## Robot Control
 - Name: RobotControl
 - Messages:
-  - robot
-  - sleep
-  - start
-  - stop
-  - right
-  - left
-  - forward
-  - backward
-  - home
-  - slow
-  - fast
-  - 
+  - Robot Wake Up
+  - Robot Sleep
+  - Start Control
+  - Stop Control
+  - Go Right
+  - Go Left
+  - Go Forward
+  - Go Back
+  - Go Home
+  - Slower Speed
+  - Faster Speed
+  - Lights On
+  - Lights Off
+  - Play Music
+
 ## Voice PIN
 - Name: VoicePIN
 - Messages:

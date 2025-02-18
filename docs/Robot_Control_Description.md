@@ -28,7 +28,6 @@ The recognized command is transmitted as a text string for further use by the us
 
 Additionally, the board provides visual and audio feedback for recognized commands:
 
-- The recognized command is played through the speaker.
 - The command is displayed on the built-in screen.
 - In case of successful recognition, the DevBoard LEDs blink green.
 
@@ -55,7 +54,7 @@ Additionally, the board provides visual and audio feedback for recognized comman
 ### Entering the Mode
 
 To switch to tilt control mode:
--	Use the voice command "Start Control".
+-	Use the voice command "Start Control"
 or
 -	Press the USER button.
 
@@ -69,11 +68,17 @@ The deviation of the circle from the center of the intersecting lines visually i
 
 **Important Note:** In tilt control mode, you can continue to use voice commands. The board will no longer repeat or display them on the screen, but LED indicators will remain active, and you can still retrieve the recognized command as a text string via the API.
 
-For more details, see the document: link to IMU Control Mode document
-
 ### Exiting the Mode
-- Use the voice command "Stop control."
+- Use the voice command "Stop control"
 - Press the USER button.
+
+### Message Format:
+- Messages from the **ESP32S3** to the **ESP32C3** follow this [protocol](https://github.com/Grovety/GRC-AI-apps/blob/main/GRC_protocol.md).
+- **Sample rate:** 15 Hz.
+- Board orientation is represented by two angles: **x (roll)** and **y (pitch)**, in the range **(-90°, 90°)**.
+- Each coordinate is stored in **1 byte**.
+- Coordinates are prefixed with the string **`XY`**.
+- Example message: `"RobotControl_XY"[x_coord][y_coord]`.
 
 
 

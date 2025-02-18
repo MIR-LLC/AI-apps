@@ -108,7 +108,7 @@ This interactive English learning app helps kids learn through pictures, sounds,
   - Numbers in addition and subtraction examples.
 
 #### Topics:
-- Numbers (0 to 20).
+- Numbers (0 to 10).
 - Animals.
 - Nature.
 - Human.
