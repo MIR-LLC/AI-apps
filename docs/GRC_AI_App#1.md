@@ -54,8 +54,6 @@ We designed it to showcase voice control and tilt-based movement. You can also u
 The application operates in constant mode, listening for user commands through the built-in microphones. When it detects a command from its predefined list, the application recognizes it, announces it through the speaker on the development board, and transmits it via BLE and wired connections.
 The command that is sent can be transformed into movement commands by the robot or other devices. Additionally, you can process the command using the onboard ESP32-C3 microcontroller, allowing you to convert it directly into commands for controlling the motors without the need for extra computing boards.
 
->Create a smart lock activated by voice PIN using the GRC AI DevBoard with App#1, [Crowtail Relay](https://www.elecrow.com/crowtail-relay-p-1232.html) + [Electromagnetic Lock](https://www.elecrow.com/electromagnetic-lock-p-1609.html)
-
 **Tilt Control**
 
 The app detects the tilt of a board and translates it into commands to control a robot. Tilting forward makes the robot accelerate, while tilting backward slows it down or moves it in reverse. Tilting to the sides makes it turn. The controls are intuitive and engaging, offering a fun user experience. This system can be adapted to control different types of machines. 
@@ -69,6 +67,8 @@ The app detects the tilt of a board and translates it into commands to control a
 This application allows the DevBoard to function as an electronic switch that activates when a user says a pre-set voice PIN code consisting of four digits. 
 
 It serves as a secure key to prevent unauthorized use, ensuring that the switch activates only for the authorized user who knows the correct PIN.
+
+>Create a smart lock activated by voice PIN using the GRC AI DevBoard with App#1, [Crowtail Relay](https://www.elecrow.com/crowtail-relay-p-1232.html) + [Electromagnetic Lock](https://www.elecrow.com/electromagnetic-lock-p-1609.html)
 
 https://youtu.be/QeatYOg01Y4 
 
