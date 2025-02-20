@@ -34,20 +34,20 @@ Additionally, the board provides visual and audio feedback for recognized comman
 
 ### List of Predefined Voice Commands
 
-- Robot Wake Up  
-- Robot Sleep  
-- Start Control  
-- Stop Control  
-- Go Right  
-- Go Left  
-- Go Forward  
-- Go Back  
-- Go Home  
-- Slower Speed  
-- Faster Speed  
-- Lights On  
-- Lights Off  
-- Play Music
+- ROBOT WAKE UP
+- ROBOT SLEEP
+- MANUAL CONTROL
+- VOICE CONTROL
+- GO RIGHT
+- GO LEFT
+- GO FORWARD
+- GO BACK
+- GO HOME
+- SLOWER SPEED
+- FASTER SPEED
+- LIGHTS ON
+- LIGHTS OFF
+- PLAY MUSIC
 
 ## Tilt Control
 ### Entering the Mode
