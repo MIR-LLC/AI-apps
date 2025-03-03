@@ -1,4 +1,4 @@
-# GRC AI App#2
+# GRC AI App#2 (Draft)
 
 Ready-to-use software for quickly starting the development of Edge AI applications based on the GRC Development Board.
 
