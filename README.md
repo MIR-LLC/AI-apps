@@ -1,6 +1,6 @@
 # GRC-AI-apps
 
-[Description of GRC_AI APP#1](https://github.com/Grovety/GRC-AI-apps/blob/main/docs/GRC_AI_App%231.md)
+[Description of GRC_AI App#1](https://github.com/Grovety/GRC-AI-apps/blob/main/docs/GRC_AI_App%231.md)
 
 [DevBoard Specification](https://github.com/Grovety/GRC-AI-apps/blob/main/docs/DevBoard_Specification.md)
 
