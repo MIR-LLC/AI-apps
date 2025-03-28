@@ -20,7 +20,7 @@ https://github.com/MIR-LLC/AI-apps
 
 РЕКОМЕНДУЕМ: Робот CrowBot-BOLT от Elecrow уже готов для управления с помощью нашей платы. Вы можете приобрести его напрямую у производителя или в нашем магазине: 
 
-https://www.ozon.ru/product/programmiruemyy-robot-crowbot-bolt-16-urokov-dlya-nachinayushchih-1831293601/ 
+https://ozon.ru/t/j9QSpNL
 
 Артикул Озон: 1831293601 
 
