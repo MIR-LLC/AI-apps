@@ -1,24 +1,25 @@
-# GRC AI App#1 Robot Control 
+# Управление роботом 
 
-The application is designed to control various devices, such as robots.  
+TПриложение для управления различными устройствами, прежде всего - движением роботов.   
 
 > Check out our [Arduino open-source program](https://github.com/Grovety/CrowBot_GRC_program/tree/main) for the [CrowBot-BOLT robot](https://www.elecrow.com/crowbot-bolt-programmable-smart-robot-car-steam-robot-kit.html), which is ready to use right out of the box! We designed it to showcase voice control and tilt-based movement. You can also use it as a reference for your projects, adapt it for other robots and devices, or explore new possibilities with the CrowBot.
 
-## What is Robot Control 
+## Как устроено управление роботом 
 
-Robot Control is a two-part software solution.  
+Решение состоит из двух частей 
 
-The first part is a neural network-based proprietary software running on the ESP32-S3 SoC on the GRC Development Board. It performs two main functions:  
+The first part is a neural network-based proprietary software running on the ESP32-S3 SoC on the GRC Development Board. It performs two main functions: 
+Первая часть - это программное обеспечение, в том числе нейронные сети, которые работают на ESP32-S3 на нашей плате. Их задача  
 
-1. Recognizing voice commands from a predefined list. 
-2. Reading the tilt of the board along the X and Y axes.
+1. Распознавание голосовых команд 
+2. Определение углов наклона платы в пространстве (по осям X и Y)
 
 ![RCax](https://github.com/user-attachments/assets/df23ef1b-fbf7-4044-8efd-d63a35861690)
 
-The second part is an API that provides access to recognized commands (text string) and tilt angle values. You can use it to develop your own projects with an open-source example of software for the ESP32-C3 part of the GRC Development Board: 
+Вторая часть - это API и программное обеспечение, которые дают разработчику возможность работать с результатом работы первой части для создания собственных кастомизированных решений. 
 
-- API description
-- Open source example of software for working with API
+- описание API 
+- Открытый пример реализации работы с API
 
 ## Voice Control
 The board "listens" to user commands through its built-in microphones and recognizes them using a neural network running on the S3.
