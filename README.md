@@ -1,22 +1,19 @@
-# GRC-AI-apps
+[Описание "Управления роботом"](https://github.com/MIR-LLC/AI-apps/blob/main/docs/Robot_Control_Description.md)
 
-[Description of GRC_AI App#1](https://github.com/MIR-LLC/AI-apps/blob/main/docs/GRC_AI_App%231.md)
+[Описание набора приложений App1 (Управление роботом, Голосовой ПИН-код, Тичер3+)](https://github.com/MIR-LLC/AI-apps/blob/main/docs/GRC_AI_App%231.md)
 
-[DevBoard Specification](https://github.com/MIR-LLC/AI-apps/blob/main/docs/DevBoard_Specification.md)
-
-[Robot Control Description](https://github.com/MIR-LLC/AI-apps/blob/main/docs/Robot_Control_Description.md)
+[Описание отладочной платы](https://github.com/MIR-LLC/AI-apps/blob/main/docs/DevBoard_Specification.md)
 
 
+# Пример приложения взаимодействия ESP32S3 и ESP32C3
 
-# An example application demonstrating communication between ESP32S3 and ESP32C3
+1. Пример показывает как установить приложение на С3 для взаимодействия с S3 с помощью UART интерфейса.
+    - Введите `help` для просмотра поддерживаемых команд.
+    - По умаолчанию все ссобщения полученные от ESP32S3 отправляются с использованием [BLE](https://github.com/MIR-LLC/AI-apps/blob/main/BLE.md). Все возможные сообщения описаны здесь: [GRC_AI_apps_kit#1.md](https://github.com/MIR-LLC/AI-apps/blob/main/GRC_AI_apps_kit%231.md).
 
-1. This example shows how to set up a console application on the ESP32C3 to control the ESP32S3 using the UART interface.
-    - Type `help` to display the supported commands.
-    - By default, all messages received from the ESP32S3 are sent using the [BLE](https://github.com/MIR-LLC/AI-apps/blob/main/BLE.md). All possible messages are described in [GRC_AI_apps_kit#1.md](https://github.com/Grovety/GRC-AI-apps/blob/main/GRC_AI_apps_kit%231.md) and [GRC_AI_apps_kit#2.md](https://github.com/Grovety/GRC-AI-apps/blob/main/GRC_AI_apps_kit%232.md).
+2. Протокол взаимодействия через UART [здесь](https://github.com/MIR-LLC/AI-apps/blob/main/GRC_protocol.md).
 
-2. The UART communication protocol described [here](https://github.com/Grovety/GRC-AI-apps/blob/main/GRC_protocol.md).
-
-3. UART parameters:
+3. UART параметры:
 
 | Parameter           | Value                                |
 | ------------------- | ------------------------------------ |
@@ -49,6 +46,6 @@ idf.py -p PORT build flash monitor
 (Replace PORT with the name of the serial port to use)
 ___________
 
-Also, you can use binaries from https://github.com/Grovety/GRC-AI-apps/tree/main/firmware
+Также вы можете использовать готовый бинарный файл: https://github.com/MIR-LLC/AI-apps/tree/main/firmware
 
-Use https://github.com/Grovety/GRC-AI-apps/blob/main/firmware/flash_tool.zip to flash the board.
+Чтобы прошить плату используйте: https://github.com/MIR-LLC/AI-apps/blob/main/firmware/flash_tool.zip
