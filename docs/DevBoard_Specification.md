@@ -1,9 +1,9 @@
-# GRC tinyML DevBoard Specification
+# Описание отладочной платы
 
-![DevBDesc](https://github.com/user-attachments/assets/3b128e4f-5e14-4521-b714-03a67c541ea3)
+![Описание элементов2](https://github.com/user-attachments/assets/95387465-c665-47b6-a05d-76898a465464)
 
 
-### Master module	ESP32-S3
+## "Закрытая" часть - ESP32-S3
 Tensilica Xtensa 32-bit LX7 microprocessor
 
 Cores: 2
@@ -12,14 +12,14 @@ Clock frequency: up to 240 MHz;
 
 Performance: up to 600 DMIPS
 
-Communication module	ESP32-C3
+## "Открытая" часть -	ESP32-C3
 
 RISC-V 32 bit
 
 Clock frequency: up to 160 MHz
 
 
-### Memory
+### Память
 384 KB ROM
 
 512 KB SRAM
@@ -37,7 +37,7 @@ USB, UART to USB interface CP2102N
 Support of battery power supply with charge control and protection
 
 
-### MEMS microphone
+### MEMS микрофоны
 2 ultra-compact, low-power, omnidirectional, digital MEMS microphone MP34DT06JTR (PDM microphones)
 
 •	AOP = 122.5 dBSPL
@@ -49,13 +49,13 @@ Support of battery power supply with charge control and protection
 •	 –26 dBFS ± 1 dB sensitivity
 
 
-### Accelerometer
+### Акселерометр
 A multi-chip module MPU-9250 (9-axis sensor: a gyroscope, an accelerometer, and a compass)
 
-### Buttons
-4 buttons: RESET button, BACK/SLEEP button, 2 USER/BOOT buttons
+### Кнопки
+4 кнопки: RESET, BACK/SLEEP, 2 USER/BOOT
 
-### Audio
+### Аудио
 Class D i2s amplifier MAX98357A 
 
 •	Output Power: 3.2W at 4Ω, 10% THD, 1.8W at 8Ω, 10% THD, with 5V supply.
@@ -77,10 +77,10 @@ Speaker FUET_FS_1340
 •	Power Rating 0.7 MAX. 1.0
 
 
-### LEDs
+### Светодиоды
 3 RGB LEDs – SK6805
 
-### Display
+### Дисплей
 Monochrome OLED Display
 
 0.96" 128x64
@@ -118,6 +118,6 @@ Internal co-existence mechanism between Wi-Fi and Bluetooth to share the same an
 5V, 500mA (min)
 ### 2 PIN socket
 LiPo 1S - 3.7V
-### Power consumption (average)
+### Среднее потребление
 30mA
 
